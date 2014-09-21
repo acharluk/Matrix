@@ -14,7 +14,23 @@ public class Main {
     //Returns an int[][] result
     public static int[][] multiply(int[][] a, int[][] b) {
         int result[][] = new int[a.length][b.length];
-        //Calcs here
+
+        for (int i = 0; i < a.length; i++)
+            for (int j = 0; j < b[i].length; j++)
+                result[i][j] = 0;
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[i].length; j++) {
+                int res = 0;
+
+                for (int k = 0; k < a[i].length; k++) {
+                    res += a[i][k] * b[k][j];
+                }
+                result[i][j] = res;
+                if (DEBUG) System.out.println("result[" + i + "][" + j + "] = " + result[i][j]);
+            }
+        }
+
         return result;
     }
 
@@ -23,7 +39,7 @@ public class Main {
         System.out.println();
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a[0].length; j++) {
-                System.out.print(a[i][j]);
+                System.out.print(a[i][j] + " ");
             }
             System.out.println();
         }
