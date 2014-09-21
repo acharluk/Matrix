@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Main {
 
-
+    static boolean DEBUG = true;
 
     public static void main(String[] args) {
+        print(multiply(readMatrix(),readMatrix()));
     }
 
     //Multiply matrix a with matrix b
@@ -31,7 +32,24 @@ public class Main {
     //Read matrix from user input and save it
     public static int[][] readMatrix() {
         Scanner sc = new Scanner(System.in);
+        System.out.print("Enter matrix: ");
+
         //Transform input String to int[][]
+        String str = sc.nextLine();
+        String[] nums = str.split(" ");
+
+        int size = (int) Math.sqrt(nums.length);
+        int[][] matrix = new int[size][size];
+
+        int k = 0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                matrix[i][j] = Integer.parseInt(nums[k]);
+                if (DEBUG) System.out.println("matrix[" + i + "][" + j + "] = " + nums[k]);
+                k++;
+            }
+        }
+        return matrix;
     }
 
 }
