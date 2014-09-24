@@ -7,13 +7,14 @@ public class Main {
     static boolean DEBUG = false;
 
     public static void main(String[] args) {
+        new MatrixGUI();
         print(multiply(readMatrix(),readMatrix()));
     }
 
     //Multiply matrix a with matrix b
     //Returns an int[][] result
     public static int[][] multiply(int[][] a, int[][] b) {
-        int result[][] = new int[a.length][b[0].length];
+        int[][] result = new int[a.length][b[0].length];
 
         if (a.length == b[0].length) {
             for (int i = 0; i < a.length; i++)
@@ -89,5 +90,7 @@ public class Main {
         }
         return matrix;
     }
+
+
 
 }
