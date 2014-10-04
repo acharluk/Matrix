@@ -32,11 +32,11 @@ public class MatrixGUI extends JFrame {
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(textArea1.getText());
                 ma = textArea1.getText();
-                mb = textArea2.getText();
-                //Main.print(Main.multiply(readMatrixFromGUI(ma),readMatrixFromGUI(mb)));
-                textArea3.setText(Main.multiply(readMatrixFromGUI(ma),readMatrixFromGUI(mb)).toString());
+                mb = textArea3.getText();
+                System.out.println(textArea1.getText());
+                System.out.println(textArea3.getText());
+                print(Main.multiply(readMatrixFromGUI(ma), readMatrixFromGUI(mb)));
             }
         });
     }
@@ -49,23 +49,44 @@ public class MatrixGUI extends JFrame {
         //Create matrix
         int[][] matrix = new int[sizeX][sizeY];
 
-        System.out.print("Enter matrix: ");
-
-        //Check if the input string starts with a space
-        while (m.startsWith(" ")) {
-            m = m.substring(1);
-        }
-
-        String[] nums = m.split(" ");
-
-        int k = 0;
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                matrix[i][j] = Integer.parseInt(nums[k]);
+        String[] nums = m.split("");
+        int[] numsInt = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int k = 0;
+            if (nums[k] == "" || nums[k] == " " || nums[k] == "\n") {
+                nums[k] = nums[k].substring(1);
+            } else {
+                try {
+                    numsInt[i] = Integer.parseInt(nums[k]);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
                 k++;
             }
         }
+        int k = 0;
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+                    matrix[i][j] = numsInt[k];
+                    k++;
+            }
+        }
         return matrix;
+    }
+
+    public void print(int[][] a) {
+        String res = "";
+        System.out.println();
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                System.out.print(a[i][j] + " ");
+                res = res.concat(a[i][j] + " ");
+            }
+            System.out.println();
+            res = res.concat("\n");
+        }
+        System.out.println("RES: " + res);
+        textArea2.setText(res);
     }
 
 }
