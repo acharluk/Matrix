@@ -10,8 +10,8 @@ public class Matrix {
     private int[][] matrix;
     private int size;
 
-    public Matrix(int[] mat, int mSize) {
-        size = mSize;
+    public Matrix(int[] mat, int size) {
+        this.size = size;
         matrix = new int[size][size];
         clear();
         int k = 0;
@@ -23,13 +23,14 @@ public class Matrix {
         }
     }
 
-    public Matrix(int[][] mat, int mSize) {
-        size = mSize * mSize;
+    public Matrix(int[][] mat, int size) {
+        this.size = size;
         matrix = mat;
     }
 
-    public Matrix(int mSize) {
-        size = mSize * mSize;
+    public Matrix(int size) {
+        this.size = size;
+        matrix = new int[size][size];
     }
 
     public void setSize(int size) {
@@ -54,28 +55,27 @@ public class Matrix {
                 mat[i][j] = Integer.parseInt(ss[i]);
             }
         }
-        Matrix m = new Matrix(mat, size);
 
-        return m;
+        return new Matrix(mat, size);
     }
 
     public Matrix multiply(Matrix mat) {
         Matrix result = new Matrix(mat.matrix.length);
-        for (int i = 0; i < this.matrix.length; i++)
-            for (int j = 0; j < mat.matrix[i].length; j++)
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < mat.matrix[i].length; j++) {
                 result.matrix[i][j] = 0;
-
+            }
+        }
         for (int i = 0; i < result.matrix.length; i++) {
             for (int j = 0; j < result.matrix[i].length; j++) {
                 int res = 0;
-                for (int k = 0; k < this.matrix[i].length; k++) {
-                    res += this.matrix[i][k] * mat.matrix[k][j];
+                for (int k = 0; k < matrix[i].length; k++) {
+                    res += matrix[i][k] * mat.matrix[k][j];
                 }
                 result.matrix[i][j] = res;
                 System.out.println("result[" + i + "][" + j + "] = " + result.matrix[i][j]);
             }
-        }
-        return result;
+        }return result;
     }
 
     public void print() {
@@ -86,6 +86,18 @@ public class Matrix {
             }
             System.out.println();
         }
+    }
+
+    public String print2() {
+        String result = null;
+        System.out.println();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                result += matrix[i][j];
+            }
+            System.out.println();
+        }
+        return result;
     }
 
     public void clear() {

@@ -32,12 +32,27 @@ public class MatrixGUI extends JFrame {
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*
                 ma = textArea1.getText();
                 mb = textArea3.getText();
-                System.out.println(textArea1.getText());
-                System.out.println(textArea3.getText());
-                */
+
+                String[] sp1 = ma.split(" ");
+                String[] sp2 = mb.split(" ");
+
+                int[] num1 = new int[sp1.length], num2 = new int[sp2.length];
+
+                for (int i = 0; i < sp1.length; i++) {
+                    num1[i] = Integer.parseInt(sp1[i].trim());
+                }
+
+                for (int i = 0; i < sp1.length; i++) {
+                    num2[i] = Integer.parseInt(sp2[i].trim());
+                }
+
+
+                Matrix m1 = new Matrix(num1, 2);
+                Matrix m2 = new Matrix(num2, 2);
+                Matrix result = m1.multiply(m2);
+                textArea2.setText(result.print2());
             }
         });
     }
