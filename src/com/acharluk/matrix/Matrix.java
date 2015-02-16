@@ -8,80 +8,98 @@ import java.util.Scanner;
 public class Matrix {
 
     private int[][] matrix;
-    private int size;
+    private int fil, col;
 
-    public Matrix(int[] mat, int size) {
-        this.size = size;
-        matrix = new int[size][size];
+    public Matrix(int[] mat, int fil, int col) {
+        this.fil = fil;
+        this.col = col;
+        matrix = new int[fil][col];
         clear();
         int k = 0;
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - 1; j++) {
+        for (int i = 1; i < fil; i++) {
+            for (int j = 1; j < col; j++) {
                 matrix[i][j] = mat[k];
                 k++;
             }
         }
     }
 
-    public Matrix(int[][] mat, int size) {
-        this.size = size;
+    public Matrix(int[][] mat) {
+        fil = mat.length;
+        col = mat[0].length;
         matrix = mat;
     }
 
-    public Matrix(int size) {
-        this.size = size;
-        matrix = new int[size][size];
+    public Matrix(int fil, int col) {
+        this.fil = fil;
+        this.col = col;
+        matrix = new int[fil][col];
+        clear();
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setSize(int fil, int col) {
+        this.fil = fil;
+        this.col = col;
     }
 
-    public int getSize() {
-        return size;
+    public int getFil() {
+        return fil;
+    }
+
+    public int getCol() {
+        return col;
     }
 
     public static Matrix read() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Matrix size: ");
-        int size = scanner.nextInt();
+
+        System.out.print("Matrix fil: ");
+        int fil = Integer.parseInt(scanner.next());
+
+        System.out.print("Matrix col: ");
+        int col = Integer.parseInt(scanner.next());
+
         System.out.print("Matrix: ");
         String s = scanner.next();
-        String[] ss = s.split(" ");
-        int[][] mat = new int[size][size];
 
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = 0; j < s.length(); j++) {
+        String[] ss = s.split(" ");
+
+        int[][] mat = new int[fil][col];
+
+        for (int i = 0; i < fil - 1; i++) {
+            for (int j = 0; j < col - 1; j++) {
                 mat[i][j] = Integer.parseInt(ss[i]);
+                System.out.println(ss[i]);
             }
         }
 
-        return new Matrix(mat, size);
+        return new Matrix(mat);
     }
 
     public Matrix multiply(Matrix mat) {
-        Matrix result = new Matrix(mat.matrix.length);
-        for (int i = 0; i < matrix.length; i++){
-            for (int j = 0; j < mat.matrix[i].length; j++) {
+        Matrix result = new Matrix(mat.fil, col);
+        for (int i = 0; i < mat.fil; i++){
+            for (int j = 0; j < col; j++) {
                 result.matrix[i][j] = 0;
             }
         }
-        for (int i = 0; i < result.matrix.length; i++) {
-            for (int j = 0; j < result.matrix[i].length; j++) {
+        for (int i = 0; i < result.fil; i++) {
+            for (int j = 0; j < result.col; j++) {
                 int res = 0;
-                for (int k = 0; k < matrix[i].length; k++) {
+                for (int k = 0; k < col; k++) {
                     res += matrix[i][k] * mat.matrix[k][j];
                 }
                 result.matrix[i][j] = res;
                 System.out.println("result[" + i + "][" + j + "] = " + result.matrix[i][j]);
             }
-        }return result;
+        }
+        return result;
     }
 
     public void print() {
         System.out.println();
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
+        for (int i = 0; i < fil; i++) {
+            for (int j = 0; j < col; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();

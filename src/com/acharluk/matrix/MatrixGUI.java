@@ -38,19 +38,19 @@ public class MatrixGUI extends JFrame {
                 String[] sp1 = ma.split(" ");
                 String[] sp2 = mb.split(" ");
 
-                int[] num1 = new int[sp1.length], num2 = new int[sp2.length];
+                int[] num1 = new int[sp1.length];
+                int[] num2 = new int[sp2.length];
 
                 for (int i = 0; i < sp1.length; i++) {
-                    num1[i] = Integer.parseInt(sp1[i].trim());
+                    num1[i] = Integer.parseInt(sp1[i]);
                 }
 
                 for (int i = 0; i < sp1.length; i++) {
-                    num2[i] = Integer.parseInt(sp2[i].trim());
+                    num2[i] = Integer.parseInt(sp2[i]);
                 }
 
-
-                Matrix m1 = new Matrix(num1, 2);
-                Matrix m2 = new Matrix(num2, 2);
+                Matrix m1 = new Matrix(num1, (int) Math.sqrt(num1.length) / 2, (int) Math.sqrt(num1.length) / 2);
+                Matrix m2 = new Matrix(num2, (int) Math.sqrt(num2.length) / 2, (int) Math.sqrt(num2.length) / 2);
                 Matrix result = m1.multiply(m2);
                 textArea2.setText(result.print2());
             }
