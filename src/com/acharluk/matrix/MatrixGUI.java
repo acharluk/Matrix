@@ -17,6 +17,7 @@ public class MatrixGUI extends JFrame {
 
     public String ma,mb;
 
+    /*
     public MatrixGUI() {
         super("Matrix calculator");
         setContentPane(panel);
@@ -53,6 +54,27 @@ public class MatrixGUI extends JFrame {
                 Matrix m2 = new Matrix(num2, (int) Math.sqrt(num2.length) / 2, (int) Math.sqrt(num2.length) / 2);
                 Matrix result = m1.multiply(m2);
                 textArea2.setText(result.print2());
+            }
+        });
+    }
+    */
+
+    public MatrixGUI() {
+        super("Matrix calculator");
+        setContentPane(panel);
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        calculateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
             }
         });
     }

@@ -54,13 +54,14 @@ public class Matrix {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Matrix fil: ");
-        int fil = Integer.parseInt(scanner.next());
+        int fil = scanner.nextInt();
 
         System.out.print("Matrix col: ");
-        int col = Integer.parseInt(scanner.next());
+        int col = scanner.nextInt();
 
+        Scanner scanner1 = new Scanner(System.in);
         System.out.print("Matrix: ");
-        String s = scanner.next();
+        String s = scanner1.nextLine();
 
         String[] ss = s.split(" ");
 
@@ -68,11 +69,10 @@ public class Matrix {
 
         for (int i = 0; i < fil - 1; i++) {
             for (int j = 0; j < col - 1; j++) {
-                mat[i][j] = Integer.parseInt(ss[i]);
-                System.out.println(ss[i]);
+                mat[i][j] = Integer.parseInt(ss[i].trim());
+                System.out.println(ss[i].trim());
             }
         }
-
         return new Matrix(mat);
     }
 
