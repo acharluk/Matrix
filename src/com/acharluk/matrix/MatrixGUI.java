@@ -74,7 +74,7 @@ public class MatrixGUI extends JFrame {
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
             }
         });
     }

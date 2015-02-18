@@ -62,13 +62,17 @@ public class Matrix {
         Scanner scanner1 = new Scanner(System.in);
         System.out.print("Matrix: ");
         String s = scanner1.nextLine();
+        System.out.println(s);
 
         String[] ss = s.split(" ");
+        for (int i = 0; i < ss.length; i++) {
+            System.out.println(i + ":" + ss[i]);
+        }
 
         int[][] mat = new int[fil][col];
 
-        for (int i = 0; i < fil - 1; i++) {
-            for (int j = 0; j < col - 1; j++) {
+        for (int i = 0; i < ss.length / 2; i++) {
+            for (int j = 0; j < ss.length / 2; j++) {
                 mat[i][j] = Integer.parseInt(ss[i].trim());
                 System.out.println(ss[i].trim());
             }
@@ -77,23 +81,21 @@ public class Matrix {
     }
 
     public Matrix multiply(Matrix mat) {
-        Matrix result = new Matrix(mat.fil, col);
-        for (int i = 0; i < mat.fil; i++){
-            for (int j = 0; j < col; j++) {
-                result.matrix[i][j] = 0;
-            }
-        }
-        for (int i = 0; i < result.fil; i++) {
-            for (int j = 0; j < result.col; j++) {
-                int res = 0;
-                for (int k = 0; k < col; k++) {
-                    res += matrix[i][k] * mat.matrix[k][j];
+        if (col != mat.fil) {
+            System.out.println("Not compatible");
+        } else {
+            Matrix result = new Matrix(col, mat.fil);
+            for (int i = 0; i < result.fil; i++) {
+                for (int j = 0; j < result.col; j++) {
+                    for (int k = 0; k < col; k++) {
+                        result.matrix[i][j] += matrix[i][k] * mat.matrix[k][j];
+                    }
+                    System.out.println("result[" + i + "][" + j + "] = " + result.matrix[i][j]);
                 }
-                result.matrix[i][j] = res;
-                System.out.println("result[" + i + "][" + j + "] = " + result.matrix[i][j]);
             }
+            return result;
         }
-        return result;
+        return null;
     }
 
     public void print() {
