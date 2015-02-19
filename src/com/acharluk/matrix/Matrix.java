@@ -37,33 +37,6 @@ public class Matrix {
         clear();
     }
 
-    public static Matrix read() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Matrix rows: ");
-        int row = scanner.nextInt();
-
-        System.out.print("Matrix columns: ");
-        int col = scanner.nextInt();
-
-        Scanner scanner1 = new Scanner(System.in);
-        System.out.print("Matrix: ");
-        String s = scanner1.nextLine();
-
-        String[] ss = s.split(" ");
-
-        int[][] mat = new int[row][col];
-
-        int k = 0;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                mat[i][j] = Integer.parseInt(ss[k].trim());
-                k++;
-            }
-        }
-        return new Matrix(mat);
-    }
-
     public void setSize(int row, int col) {
         this.row = row;
         this.col = col;
@@ -75,6 +48,10 @@ public class Matrix {
 
     public int getCol() {
         return col;
+    }
+
+    public int[][] getMatrix() {
+        return matrix;
     }
 
     public Matrix multiply(Matrix mat) {
@@ -93,28 +70,6 @@ public class Matrix {
             return result;
         }
         return null;
-    }
-
-    public void print() {
-        System.out.println();
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                System.out.print(matrix[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public String print2() {
-        String result = null;
-        System.out.println();
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                result += matrix[i][j];
-            }
-            System.out.println();
-        }
-        return result;
     }
 
     public void clear() {
