@@ -50,7 +50,7 @@ public class MatrixGUI extends JFrame {
                 int col2 = textArea3.getText().replaceAll("\\s+","").length() / textArea3.getLineCount();
 
                 String[] s2 = textArea3.getText().replaceAll("\n", " ").split(" ");
-                int[][] mat2 = new int[row1][col1];
+                int[][] mat2 = new int[row2][col2];
                 int k2 = 0;
                 for (int i = 0; i < row2; i++) {
                     for (int j = 0; j < col2; j++) {

@@ -48,7 +48,7 @@ public class MatrixUtil {
         String result = "";
         for (int i = 0; i < mat.getRow(); i++) {
             for (int j = 0; j < mat.getCol(); j++) {
-                result += mat.getMatrix()[i][j];
+                result += mat.getMatrix()[i][j] + " ";
             }
             result+="\n";
         }
