@@ -85,6 +85,22 @@ public class Matrix {
         }
     }
 
+    public int determinant() {
+        int result = 0;
+        if (row == 2 && col == 2) {
+          result = matrix[0][0] * matrix[1][1] -
+                  matrix[0][1] * matrix[1][0];
+        } else if (row == 3 && col == 3) {
+            result = matrix[0][0] * matrix[1][1] * matrix[2][2] +
+                    matrix[0][2] * matrix[1][0] * matrix[2][1] +
+                    matrix[0][1] * matrix[1][2] * matrix[2][0] -
+                    matrix[0][2] * matrix[1][1] * matrix[2][0] -
+                    matrix[0][0] * matrix[1][2] * matrix[2][1] -
+                    matrix[0][1] * matrix[1][0] * matrix[2][2];
+        }
+        return result;
+    }
+
     public void clear() {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {

@@ -15,7 +15,7 @@ public class MatrixGUI extends JFrame {
     private JButton calculateButton;
     private JPanel panel;
     private JButton addButton;
-    private JButton button1;
+    private JButton determinantButton;
 
     public MatrixGUI() {
         super("Matrix calculator");
@@ -61,6 +61,13 @@ public class MatrixGUI extends JFrame {
                 }
 
                 textArea2.setText(MatrixUtil.print2(result));
+            }
+        });
+
+        determinantButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textArea2.setText(String.valueOf(getMatrix1().determinant()));
             }
         });
     }
