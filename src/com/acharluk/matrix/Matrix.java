@@ -1,7 +1,5 @@
 package com.acharluk.matrix;
 
-import java.util.Scanner;
-
 /**
  * Created by ACharLuk on 25/09/2014.
  */

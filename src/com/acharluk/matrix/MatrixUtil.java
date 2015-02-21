@@ -1,12 +1,13 @@
 package com.acharluk.matrix;
 
-import java.util.Scanner;
+import javax.swing.*;
 
 /**
  * Created by ACharLuk on 19/02/2015.
  */
 public class MatrixUtil {
 
+    /*
     public static Matrix read() {
         Scanner scanner = new Scanner(System.in);
 
@@ -33,16 +34,7 @@ public class MatrixUtil {
         }
         return new Matrix(mat);
     }
-
-    public static void print(Matrix mat) {
-        System.out.println();
-        for (int i = 0; i < mat.getRow(); i++) {
-            for (int j = 0; j < mat.getCol(); j++) {
-                System.out.print(mat.getMatrix()[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
+    */
 
     public static String print2(Matrix mat) {
         String result = "";
@@ -53,6 +45,23 @@ public class MatrixUtil {
             result+="\n";
         }
         return result;
+    }
+
+    public static Matrix getMatrix(JTextArea ta) {
+        int row = ta.getLineCount();
+        int col = ta.getText().replaceAll("\\s+","").length() / ta.getLineCount();
+
+        String[] s = ta.getText().replaceAll("\n", " ").split(" ");
+        int[][] mat = new int[row][col];
+        int k = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                mat[i][j] = Integer.parseInt(s[k]);
+                k++;
+            }
+        }
+
+        return new Matrix(mat);
     }
 
 }
