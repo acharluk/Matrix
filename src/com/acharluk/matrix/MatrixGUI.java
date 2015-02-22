@@ -17,6 +17,7 @@ public class MatrixGUI extends JFrame {
     private JPanel panel;
     private JButton addButton;
     private JButton determinantButton;
+    private JButton substractButton;
 
     public MatrixGUI() {
         super("Matrix calculator");
@@ -69,6 +70,22 @@ public class MatrixGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textArea2.setText(String.valueOf(MatrixUtil.getMatrix(textArea1).determinant()));
+            }
+        });
+        substractButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Matrix matrix1 = MatrixUtil.getMatrix(textArea1);
+                Matrix matrix2 = MatrixUtil.getMatrix(textArea3);
+
+                Matrix result = null;
+                try {
+                    result = matrix1.substract(matrix2);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+
+                textArea2.setText(MatrixUtil.print2(result));
             }
         });
     }

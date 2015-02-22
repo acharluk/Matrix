@@ -62,7 +62,6 @@ public class Matrix {
                     for (int k = 0; k < col; k++) {
                         result.matrix[i][j] += matrix[i][k] * mat.matrix[k][j];
                     }
-                    //System.out.println("result[" + i + "][" + j + "] = " + result.matrix[i][j]);
                 }
             }
             return result;
@@ -71,12 +70,26 @@ public class Matrix {
 
     public Matrix add(Matrix mat) throws Exception {
         if (col != mat.col || row != mat.row) {
-            throw new Exception("Matrices cannot be multiplied");
+            throw new Exception("Matrices cannot be added");
         } else {
             Matrix result = new Matrix(row, col);
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < col; j++) {
                     result.matrix[i][j] = matrix[i][j] + mat.matrix[i][j];
+                }
+            }
+            return result;
+        }
+    }
+
+    public Matrix substract(Matrix mat) throws Exception {
+        if (col != mat.col || row != mat.row) {
+            throw new Exception("Matrices cannot be substracted");
+        } else {
+            Matrix result = new Matrix(row, col);
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    result.matrix[i][j] = matrix[i][j] - mat.matrix[i][j];
                 }
             }
             return result;
